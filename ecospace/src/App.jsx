@@ -1,0 +1,1 @@
+import React from 'react'; import Shooter from './Shooter.jsx'; export default function App(){return (<div className="app-wrap"><header className="header"><h2>EcoSpace</h2><div className="small-muted">Dispará solo a objetos reciclables</div></header><Shooter/></div>);}

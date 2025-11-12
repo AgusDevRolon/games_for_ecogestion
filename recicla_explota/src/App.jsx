@@ -1,0 +1,1 @@
+import React from 'react'; import Conveyor from './Conveyor.jsx'; export default function App(){return (<div className="app-wrap"><header className="header"><h2>Recicla y Explota</h2><div className="small-muted">Clasificá rápido los residuos en la cinta</div></header><Conveyor/></div>);}
