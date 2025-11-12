@@ -1,0 +1,50 @@
+
+:root{
+  --bg: linear-gradient(180deg,#eafaf1 0%, #f0fbff 100%);
+  --panel: #ffffff;
+  --muted: #6c757d;
+  --accent: #16a34a;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color:#222;
+  -webkit-font-smoothing:antialiased;
+  padding:18px;
+}
+.app{
+  max-width:1000px;margin:0 auto;
+}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.title{display:flex;gap:12px;align-items:center}
+.logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,#34d399,#60a5fa);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+.controls{display:flex;gap:8px;align-items:center}
+.game-wrap{background:var(--panel);border-radius:12px;padding:12px;box-shadow:0 10px 30px rgba(16,24,40,0.06)}
+.hud{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.canvas-area{position:relative;height:520px;background:linear-gradient(180deg,#f8fff9,#ffffff);border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,0.04)}
+
+/* tacho (player) */
+.tacho{
+  position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:120px;height:80px;border-radius:12px;background:linear-gradient(180deg,#fff,#eef);display:flex;align-items:center;justify-content:center;flex-direction:column;border:2px solid rgba(0,0,0,0.06);box-shadow:0 8px 20px rgba(2,6,23,0.06)
+}
+.tacho-img{width:64px;height:48px;pointer-events:none}
+
+/* fall item */
+.fall-item{position:absolute;width:72px;height:72px;display:flex;align-items:center;justify-content:center;flex-direction:column;border-radius:10px; background:rgba(255,255,255,0.98);box-shadow:0 6px 18px rgba(2,6,23,0.06);border:1px solid rgba(0,0,0,0.04);transition:transform .12s;}
+.fall-item img{width:56px;height:56px;display:block;pointer-events:none}
+.fall-item.catch-ok{transform:scale(0.9);opacity:0.9}
+.fall-item.catch-bad{transform:scale(0.9);opacity:0.6;filter:grayscale(60%)}
+
+/* HUD */
+.score{font-weight:700}
+.lives{display:flex;gap:6px;align-items:center}
+.heart{width:20px;height:20px}
+
+/* message */
+.message{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);background:rgba(255,255,255,0.98);padding:18px;border-radius:12px;box-shadow:0 12px 30px rgba(2,6,23,0.12);text-align:center}
+
+/* small */
+.small-muted{color:var(--muted);font-size:0.9rem}
+.controls button{min-width:110px}
