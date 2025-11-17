@@ -1,84 +1,252 @@
+/* src/styles.css — TEMA CLARO (WHITE) */
 
+/* -------- Variables principales (light theme) -------- */
 :root{
-  --bg: linear-gradient(180deg,#e9f7ef 0%, #f6fdff 100%);
-  --card: #ffffff;
-  --muted: #6c757d;
-  --accent: #24a148;
+  --bg-main: #f7fafc;           /* página */
+  --panel: #ffffff;             /* tarjetas / panel */
+  --card-bg: #ffffff;
+  --glass-border: rgba(15,23,42,0.06);
+  --accent: #1e815e;            /* verde principal (tu original) */
+  --accent-2: #0077b6;          /* azul secundario para contraste */
+  --muted: #6b7280;
+  --success: #10b981;
+  --danger: #ef4444;
+  --shadow-sm: 0 4px 8px rgba(15,23,42,0.06);
+  --shadow-md: 0 10px 30px rgba(15,23,42,0.08);
+  --radius: 12px;
+  --glass: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.4));
+  --text: #0f172a;
 }
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: var(--bg);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  color:#222;
-  padding:24px 12px;
+
+/* Por compatibilidad: activa el tema claro por defecto (puedes remover el atributo si quieres alternar) */
+:root[data-theme="light"] {}
+
+/* -------- Reset y base -------- */
+* { box-sizing: border-box; }
+html,body,#root { height:100%; margin:0; padding:0; font-family: Inter, Roboto, "Helvetica Neue", Arial, sans-serif; background: var(--bg-main); color: var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+.app-wrap, .app-shell { max-width: 1100px; margin: 18px auto; padding: 12px; }
+
+/* -------- Header -------- */
+.header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--panel);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
 }
-.app-shell{
-  max-width:1200px;
-  margin:0 auto;
+.title { display:flex; gap:12px; align-items:center; }
+.logo {
+  width:56px; height:56px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #fff; font-weight:800; font-size:22px;
+  box-shadow: 0 8px 24px rgba(30,129,94,0.10);
 }
-.header{
+.subtitle { color: var(--muted); font-size: 0.95rem; margin-top:2px; }
+
+/* Controls */
+.controls { display:flex; gap:14px; align-items:center; color:var(--muted); }
+.score-value { color: var(--accent); font-weight:700; font-size:1.05rem; }
+
+/* -------- Layout principal -------- */
+.board {
+  display:grid;
+  grid-template-columns: 1fr 340px;
+  gap: 26px;
+  margin-top: 18px;
+}
+.panel {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 18px;
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-md);
+}
+
+/* -------- Botones -------- */
+button { font-family: inherit; }
+.btn {
+  border-radius:10px;
+  padding:8px 12px;
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: var(--text);
+  cursor: pointer;
+}
+.btn:focus { outline: 3px solid rgba(30,129,94,0.12); outline-offset:2px; }
+.btn-primary {
+  background: linear-gradient(90deg,var(--accent),var(--accent-2));
+  color: #fff;
+  border: none;
+  box-shadow: 0 8px 22px rgba(30,129,94,0.08);
+}
+
+/* -------- Clasificador: topbar -------- */
+.topbar {
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:12px;
-  margin-bottom:18px;
+  margin-bottom:12px;
 }
-.title{
+.instructions { flex:1; text-align:center; color: var(--muted); }
+
+/* -------- Residuos area -------- */
+.residuos-area {
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.86));
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  min-height: 160px;
+}
+.residuos-list {
   display:flex;
   gap:12px;
-  align-items:center;
-}
-.logo{
-  width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#4fd1c5,#3b82f6);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:20px;box-shadow:0 6px 18px rgba(0,0,0,0.08);
-}
-.subtitle{color:var(--muted)}
-
-.controls{display:flex;gap:8px;align-items:center}
-
-.board{
-  display:grid;
-  grid-template-columns: 1fr 420px;
-  gap:20px;
-  align-items:start;
-}
-
-/* left: residuos list */
-.panel{
-  background:var(--card);
-  border-radius:14px;
-  padding:16px;
-  box-shadow:0 10px 30px rgba(35,47,55,0.06);
-}
-.residuos-grid{
-  display:flex;
   flex-wrap:wrap;
+  align-items:flex-start;
+  justify-content:flex-start;
+  padding:6px;
+}
+
+/* tarjeta residuo */
+.residuo-card {
+  width:150px;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  padding:10px;
+  border-radius:12px;
+  background: var(--panel);
+  border:1px solid rgba(15,23,42,0.04);
+  cursor:grab;
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s;
+  box-shadow: var(--shadow-sm);
+}
+.residuo-card:active { cursor:grabbing; }
+.residuo-card.dragging { opacity:0.6; transform: scale(.98); box-shadow:none; }
+.residuo-card.selected { outline: 2px dashed rgba(30,129,94,0.85); transform: translateY(-4px); box-shadow: 0 18px 36px rgba(30,129,94,0.06); }
+.residuo-img { width:64px; height:64px; object-fit:contain; }
+.residuo-meta { display:flex; flex-direction:column; gap:4px; }
+.residuo-name { font-weight:700; font-size:0.95rem; color:var(--text); min-height:2.4em; }
+.residuo-type { font-size:12px; color:var(--muted); }
+
+/* tarjeta colocado */
+.residuo-card.colocado {
+  cursor:default;
+  opacity:0.7;
+  border-style: solid;
+  border-color: #e6eef0;
+  box-shadow: none;
+}
+
+/* -------- Fin de juego UI -------- */
+.game-end-card {
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:16px;
+  border-radius:10px;
+  background: linear-gradient(90deg, rgba(30,129,94,0.06), rgba(0,119,182,0.02));
+  border: 1px solid rgba(30,129,94,0.06);
+}
+
+/* -------- Mensaje flotante -------- */
+.alert-floating {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20px;
+  z-index: 10000;
+  width: calc(100% - 48px);
+  max-width: 700px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(15,23,42,0.12);
+  background: #ffffff;
+  color: var(--text);
+  border-left: 6px solid transparent;
+}
+.alert-success { border-left-color: var(--success); }
+.alert-danger { border-left-color: var(--danger); }
+
+/* -------- Tachos (drop zones) -------- */
+.tachos-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
   gap:12px;
+  margin-top:12px;
 }
-.residuo-card{
-  width:160px;padding:12px;border-radius:12px;background:linear-gradient(180deg,#fff,#fbfffd);border:1px solid rgba(0,0,0,0.04);cursor:grab;display:flex;flex-direction:column;align-items:center;gap:8px;transition:transform .15s,box-shadow .15s,opacity .2s;
+.tacho-col { display:flex; align-items:flex-start; }
+.tacho-card {
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  background: var(--panel);
+  border: 1px solid var(--glass-border);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  cursor:pointer;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s;
 }
-.residuo-card:active{cursor:grabbing}
-.residuo-card.dragging{opacity:0.6;transform:scale(.98)}
-.residuo-img{width:84px;height:84px}
-.residuo-name{text-align:center;font-weight:600}
-
-/* right: tachos */
-.side{
-  display:flex;flex-direction:column;gap:12px;
+.tacho-card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(15,23,42,0.06); }
+.tacho-card.tacho-correct {
+  border-color: rgba(16,185,129,0.18);
+  background: linear-gradient(180deg, rgba(16,185,129,0.03), rgba(255,255,255,0.6));
+  box-shadow: 0 16px 36px rgba(16,185,129,0.06);
+  transform: translateY(-2px);
 }
-.tachos-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.tacho-card{padding:14px;border-radius:12px;background:linear-gradient(180deg,#fff,#fcfffb);border:2px dashed rgba(0,0,0,0.06);min-height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:all .18s}
-.tacho-card .tacho-icon{width:56px;height:56px}
-.tacho-card.tacho-correct{border-color:#16a34a;background:linear-gradient(180deg,#ecfdf3,#f6fffa);box-shadow:0 8px 22px rgba(16,185,129,0.08)}
-.tacho-card.tacho-wrong{border-color:#dc2626;background:linear-gradient(180deg,#fff1f2,#fff7f7);box-shadow:0 8px 22px rgba(220,38,38,0.06)}
+.tacho-card.tacho-wrong {
+  border-color: rgba(239,68,68,0.12);
+  background: linear-gradient(180deg, rgba(255,235,235,0.6), rgba(255,255,255,0.6));
+  box-shadow: 0 12px 30px rgba(239,68,68,0.05);
+  transform: translateY(-2px);
+}
+.tacho-icon { width:64px; height:64px; object-fit:contain; }
+.tacho-label { font-weight:700; color: var(--text); }
+.tacho-hint { font-size:13px; color:var(--muted); text-align:center; }
 
-.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;justify-content:center}
+/* badges/etiquetas dentro del tacho */
+.tacho-badges { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; justify-content:center; }
+.small-badge {
+  padding:6px 10px;
+  border-radius:10px;
+  font-size:13px;
+  color:#fff;
+  background: rgba(0,0,0,0.06);
+  border:1px solid rgba(0,0,0,0.04);
+}
+.badge-correct { background: linear-gradient(90deg,var(--accent),var(--accent-2)); color:#fff; box-shadow: 0 6px 16px rgba(30,129,94,0.07); }
+.badge-wrong { background: linear-gradient(90deg,#ff7b7b,#ff5b5b); color:#fff; box-shadow: 0 6px 16px rgba(255,91,91,0.05); }
 
-/* footer message */
-.msg{margin-top:12px}
+/* -------- Helpers y utilidades -------- */
+.small-muted { color: var(--muted); font-size: 0.95rem; }
+.me-2 { margin-right: 8px; }
 
-/* responsive */
-@media (max-width: 900px){ .board{grid-template-columns:1fr} .tachos-grid{grid-template-columns:1fr 1fr} }
+/* focus accesible */
+[tabindex]:focus, button:focus { outline: 3px solid rgba(30,129,94,0.12); outline-offset:2px; }
+
+/* animaciones */
+@keyframes pop {
+  from { transform: scale(.98); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.residuo-card.selected { animation: pop .12s ease; }
+
+/* -------- Responsive -------- */
+@media (max-width: 900px) {
+  .board { grid-template-columns: 1fr; }
+  .header { flex-direction: column; gap: 10px; align-items:flex-start; }
+  .residuo-card { width: 45%; max-width: 180px; }
+  .tachos-grid { grid-template-columns: 1fr; }
+  .alert-floating { left: 12px; right: 12px; transform: none; top: 10px; width: auto; max-width: calc(100% - 24px); }
+}
+

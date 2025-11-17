@@ -1,1 +1,0 @@
-import React from 'react'; import City from './City.jsx'; export default function App(){return (<div className="app-wrap"><header className="header"><h2>ReciclaCity</h2><div className="small-muted">Gestioná contenedores y reducí la contaminación</div></header><City/></div>);}
